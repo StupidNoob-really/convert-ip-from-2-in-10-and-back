@@ -1,0 +1,65 @@
+<MyGrid>
+    background_normal: ''
+    one_text: one_text
+    two_text: two_text
+    three_text: three_text
+    four_text: four_text
+    output_text: output_text
+    BoxLayout:
+        size: root.width-10, root.height-10
+        pos: 5, 5
+        orientation: 'vertical'
+
+        GridLayout:
+            cols: 4
+            row_force_default: True
+            row_default_height: 30
+            spacing: 10
+            BackgroundTextInput
+                id: one_text
+            BackgroundTextInput
+                id: two_text
+            BackgroundTextInput
+                id: three_text
+            BackgroundTextInput
+                id: four_text
+            Widget
+            Widget
+            Widget
+            Button:
+                text: 'Clear'
+                on_press: root.clear()
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Button:
+                text: 'Convert'
+                on_press: root.convert()
+
+
+            BackgroundTextInput
+                id: output_text
+                background_color: .4, 1, 1, 1
+                readonly: True
+                padding: 10
+                multiline: True
+
+<BackgroundColor@Widget>
+    background_normal: ''
+    background_color: 1., 1., 1., 1.
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<BackgroundLabel@Label+BackgroundColor>
+    background_color: 0, 0, 0, 0
+
+<BackgroundTextInput@TextInput>
+    background_color: .5, .5, .5, 1
+    multiline: False
+    font_size: 16
+    input_filter: 'int'
